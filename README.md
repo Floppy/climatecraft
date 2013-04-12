@@ -29,6 +29,27 @@ Installation
 
 3. When you reload the server, it will probably crash (I'll fix this soon). In the plugins/ClimateCraft/config.yml file, enter your AMEEconnect API key details and all should be well.
 
+Features
+--------
+
+Many items, blocks and mobs will release or absorb carbon into the atmopshere when they are burnt or grown.
+As the pollution level goes up, the weather will get worse. Storms will become more frequent, and more thundery.
+
+Commands
+--------
+
+* ```co2```: prints the amount of co2 in the atmosphere (permitted by default)
+* ```setco2 <amount>```: sets the amount of co2 in the atmosphere (not permitted by default except on console)
+
+TODO
+----
+
+* Change carbon tracking to count in ppm, not kg.
+* Add climate sensitivity scale, so you can customise how fast things change.
+* Create random water source blocks for floods when ppm is high.
+* Randomly change grass blocks to sand as ppm goes up.
+* Bring back the lowered clouds and dark skies from the original version, if possible.
+
 Building the code yourself
 --------------------------
 
