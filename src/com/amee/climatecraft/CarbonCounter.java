@@ -21,17 +21,11 @@ import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.block.BlockState;
   
-import com.amee.client.AmeeException;
-import com.amee.client.service.*;
-import com.amee.client.model.profile.*;
-
 public class CarbonCounter implements Listener {
-
-	private static AmeeProfile profile;
 
 	private static HashMap<String,Calculation> calculations = new HashMap<String,Calculation>(); 
 
-	CarbonCounter(String server, String username, String password)
+	CarbonCounter()
 	{
 		// Create mappings
 		calculations.put("coal", new Calculation("coal", 
@@ -130,22 +124,7 @@ public class CarbonCounter implements Listener {
 			Arrays.asList("energyUsed", "1.0", "energyUsedUnit", "kWh"))
 			);
 		// Initialise members
-		//player = _player;
 		Atmosphere.init();
-		// Connect to AMEE
-		AmeeContext.getInstance().setUsername(username);
-		AmeeContext.getInstance().setPassword(password);
-		AmeeContext.getInstance().setBaseUrl("http://" + server);
-		// Create a profile - later on this will be stored with the world somehow
-		try {
-			profile = AmeeObjectFactory.getInstance().addProfile();
-		} catch (AmeeException e) {
-			throw new RuntimeException("Problem connecting to AMEE");
-		}
-	}
-
-	public static AmeeProfile profile() {
-		return profile;
 	}
 
   private void emit(String calculationName) {

@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import com.amee.client.AmeeException;
-import com.amee.client.model.profile.AmeeProfileItem;
 import com.amee.client.util.Choice;
 
 public class CalculationThread implements Runnable {

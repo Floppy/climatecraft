@@ -14,8 +14,10 @@ public class ClimateCraft extends JavaPlugin {
     String server = getConfig().getString("server");
     String username = getConfig().getString("username");
     String password = getConfig().getString("password");
+    // Initialise calculation engine
+    Calculation.init(server, username, password);
     // Register carbon counter listener
-		getServer().getPluginManager().registerEvents(new CarbonCounter(server, username, password), this);
+		getServer().getPluginManager().registerEvents(new CarbonCounter(), this);
     // Set co2 value
     Atmosphere.setTotal((float)getConfig().getDouble("co2"));
     // Setup listener for weather control
