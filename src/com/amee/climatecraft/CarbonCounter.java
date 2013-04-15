@@ -53,30 +53,10 @@ public class CarbonCounter implements Listener {
 			Arrays.asList("fuel", "other primary solid biomass fuels", "context", "residential"),
 			Arrays.asList("mass", "1.0", "massUnit", "kg"))
 			);
-		calculations.put("wood-", new Calculation("wood", 
-			"business/energy/stationaryCombustion", 
-			Arrays.asList("fuel", "wood or wood waste", "context", "residential"),
-			Arrays.asList("mass", "-8.0", "massUnit", "kg"))
-			);
-		calculations.put("leaf-", new Calculation("leaf", 
-			"business/energy/stationaryCombustion", 
-			Arrays.asList("fuel", "other primary solid biomass fuels", "context", "residential"),
-			Arrays.asList("mass", "-1.0", "massUnit", "kg"))
-			);
-		calculations.put("crops-", new Calculation("crops", 
-			"business/energy/stationaryCombustion", 
-			Arrays.asList("fuel", "other primary solid biomass fuels", "context", "residential"),
-			Arrays.asList("mass", "-0.25", "massUnit", "kg"))
-			);
 		calculations.put("cactus", new Calculation("cactus", 
 			"business/energy/stationaryCombustion", 
 			Arrays.asList("fuel", "other primary solid biomass fuels", "context", "residential"),
 			Arrays.asList("mass", "4.0", "massUnit", "kg"))
-			);
-		calculations.put("cactus-", new Calculation("cactus", 
-			"business/energy/stationaryCombustion", 
-			Arrays.asList("fuel", "other primary solid biomass fuels", "context", "residential"),
-			Arrays.asList("mass", "-4.0", "massUnit", "kg"))
 			);
 		calculations.put("pig", new Calculation("pig", 
 			"business/waste/combustion/municipal", 
@@ -128,15 +108,17 @@ public class CarbonCounter implements Listener {
 	}
 
   private void emit(String calculationName) {
-    Calculation calc = calculations.get(calculationName);
-    if (calc != null)
-      calc.calculate();
+    calculate(calculationName, true);
   }
 
   private void absorb(String calculationName) {
-    Calculation calc = calculations.get(calculationName+'-');
+    calculate(calculationName, false);
+  }
+  
+  private void calculate(String calculationName, boolean emit) {
+    Calculation calc = calculations.get(calculationName);
     if (calc != null)
-      calc.calculate();
+      calc.calculate(emit);
   }
 
 	@EventHandler

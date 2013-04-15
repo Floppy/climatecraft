@@ -9,11 +9,13 @@ import com.amee.client.util.Choice;
 public class CalculationThread implements Runnable {
 
 	private Calculation item;
+  private boolean emit;
 
-	public CalculationThread(Calculation _item) {
+	public CalculationThread(Calculation _item, boolean _emit) {
 		item = _item;
+    emit = _emit;
 	}
 	public void run() {
-		item.blockingCalculate();
+		item.blockingCalculate(emit);
 	}
 }

@@ -79,12 +79,12 @@ public class Calculation {
 		return profileCategory;
 	}
 
-	public void calculate()
+	public void calculate(boolean emit)
 	{
-		new CalculationThread(this).run(); 
+		new CalculationThread(this, emit).run(); 
 	}
 
-	public void blockingCalculate() {
+	public void blockingCalculate(boolean emit) {
 		if (cachedResult == null) {
 			List<Choice> values = new ArrayList<Choice>();
 			for (int i=0; i<parameters.size(); i+=2)
@@ -100,7 +100,7 @@ public class Calculation {
         throw new RuntimeException("Problem creating profile item! " + e.getMessage());
       }		
 		}
-		Atmosphere.addToTotal(cachedResult);
+		Atmosphere.addToTotal(emit ? cachedResult : cachedResult);
 	}
 
 	public String name()
